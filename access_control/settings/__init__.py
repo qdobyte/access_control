@@ -1,0 +1,1 @@
+from base_project.settings.base import *
