@@ -1,1 +1,1 @@
-from base_project.settings.base import *
+from access_control.settings.base import *
