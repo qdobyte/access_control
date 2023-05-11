@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <h1>Signin</h1>
+
+    {{ error }}
+
+    <form action="/signin/" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+        <button class="btn btn-primary">
+            Signin
+        </button>
+    </form>
+</div>
+
+{% endblock %}
