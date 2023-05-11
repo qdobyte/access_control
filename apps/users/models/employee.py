@@ -9,7 +9,7 @@ class Employee(models.Model):
     last_name = models.CharField('Last Name', max_length=255)
     document = models.CharField('Document', max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User')
-    cost_center = models.ForeignKey('users.CostCenter', on_delete=models.CASCADE, verbose_name='Cost Center')
+    cost_department = models.ForeignKey('users.CostDepartment', on_delete=models.CASCADE, verbose_name='Cost Department')
     created_at = models.DateTimeField('Create date', auto_now_add=True)
     updated_at = models.DateTimeField('Update date', auto_now=True)
 
@@ -23,4 +23,4 @@ class Employee(models.Model):
 
     def __str__(self):
         """ String representation."""
-        return self.user.get_full_name()
+        return self.user.name()

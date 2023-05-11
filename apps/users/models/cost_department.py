@@ -1,8 +1,8 @@
 from django.db import models
 
 
-class CostCenter(models.Model):
-    """ Cost Center model. """
+class CostDepartment(models.Model):
+    """ Cost Department model. """
 
     name = models.CharField('Name', max_length=100, unique=True)
     description = models.TextField('Description', max_length=500, blank=True, null=True)
@@ -12,9 +12,9 @@ class CostCenter(models.Model):
     class Meta:
         """ Meta class. """
 
-        verbose_name = 'Cost Center'
-        verbose_name_plural = 'Cost Centers'
-        db_table = 'cost_centers'
+        verbose_name = 'Cost Department'
+        verbose_name_plural = 'Cost Departments'
+        db_table = 'cost_departments'
         ordering = ['-created_at']
 
     def __str__(self):
