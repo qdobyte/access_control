@@ -1,0 +1,79 @@
+/* Fuentes personalizadas */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+/* Colores personalizados */
+:root {
+  --primary-color: #212529; /* color principal */
+  --secondary-color: #f8f9fa; /* color secundario */
+  --accent-color: #ffc107; /* color de acento */
+}
+
+/* Estilos para la tabla */
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  background-color: #fff;
+  border-collapse: collapse;
+}
+
+.table td,
+.table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #dee2e6;
+}
+
+.table-sm td,
+.table-sm th {
+  padding: 0.3rem;
+}
+
+.table-bordered {
+  border: 1px solid #dee2e6;
+}
+
+.table-bordered td,
+.table-bordered th {
+  border: 1px solid #dee2e6;
+}
+
+.table-bordered thead td,
+.table-bordered thead th {
+  border-bottom-width: 2px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0,0,0,.05);
+}
+
+/* Estilos para los encabezados de la tabla */
+.c-list__header {
+  background-color: #343a40;
+  color: #fff;
+}
+
+/* Estilos para las filas de la tabla */
+.c-list__item:hover {
+  background-color: #f1f1f1;
+}
+
+/* Estilos para el título */
+.c-title {
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #343a40;
+  text-align: center;
+}

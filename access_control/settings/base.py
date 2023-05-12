@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # carga las variables de entorno desde .env
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -61,10 +66,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'access_control.urls'
 
+# Directorios para archivos estáticos y de plantillas
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,20 +90,14 @@ WSGI_APPLICATION = 'access_control.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'access_control',
-        'USER': 'root',
-        'PASSWORD': 'Toor583*',
-        'HOST': 'localhost',
+        'NAME': os.getenv('BD_NAME'),
+        'USER': os.getenv('BD_USER'),
+        'PASSWORD': os.getenv('BD_PASSWORD'),
+        'HOST': os.getenv('BD_HOST'),
         'PORT': '3306',
     }
 }
@@ -131,8 +133,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = 'static/'
 
 LOGIN_URL = '/signin'
 

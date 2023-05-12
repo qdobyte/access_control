@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework.documentation import include_docs_urls
-# from apps.users.api.views.login import signin, signup, home
+from apps.users.api.views.login import signin, signup, home
 from apps.users.api.views.employee import EmployeeViewSet
 from apps.users.api.views.visitor import VisitorViewSet
 from apps.users.api.views.cost_department import CostDepartmentViewSet
@@ -8,9 +8,9 @@ from apps.users.api.views.employee_ingress import EmployeeIngressViewSet
 from apps.users.api.views.visitor_ingress import VisitorIngressViewSet
 
 urlpatterns = [
-    # path('signin/', signin, name='signin'),
-    # path('signup/', signup, name='signup'),
-    # path('', home, name='home'),
+    path('signin/', signin, name='signin'),
+    path('signup/', signup, name='signup'),
+    path('', home, name='home'),
     path('api/v1/employee/create', EmployeeViewSet.as_view({'post': 'create'}), name='create_employee'),
     path('api/v1/employee/update/<int:pk>', EmployeeViewSet.as_view({'put': 'update'}), name='update_employee'),
     path('api/v1/employee/delete/<int:pk>', EmployeeViewSet.as_view({'delete': 'destroy'}), name='delete_employee'),

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+{% load static %}
+  <div class="container">
+    <h1 class="c-title text-center">Lista de Empleados - BIG JOHN</h1>
+    <div class="table-responsive">
+      <table class="c-list table table-striped table-hover">
+        <thead class="thead-dark">
+          <tr class="text-black thead-light">
+            <th scope="col" class="c-list__header text-center align-middle font-weight-bold">Nombre</th>
+            <th scope="col" class="c-list__header text-center align-middle font-weight-bold">Apellido</th>
+            <th scope="col" class="c-list__header text-center align-middle font-weight-bold">Departamento</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for employee in employees %}
+            <tr class="c-list__item {% cycle 'bg-light' '' %}">
+              <td class="c-list__data text-center align-middle">{{ employee.first_name }}</td>
+              <td class="c-list__data text-center align-middle">{{ employee.last_name }}</td>
+              <td class="c-list__data text-center align-middle">{{ employee.cost_department.name }}</td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="3" class="text-center">No hay empleados registrados.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+
+{% block css %}
+
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% endblock %}

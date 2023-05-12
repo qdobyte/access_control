@@ -1,6 +1,8 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import render
+
 
 from apps.users.api.serializers.employee import EmployeeSerializer
 from apps.users.models.employee import Employee
@@ -11,6 +13,14 @@ class EmployeeViewSet(viewsets.ModelViewSet):
 
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+
+    def list(self, request):
+        employees = self.get_queryset()
+        return render(request, 'employee/list.html', {'employees': employees})
+
+    def retrieve(self, request, pk=None):
+        employees = self.get_object()
+        return render(request, 'employee/detail.html', {'employees': employees})
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

@@ -1,6 +1,8 @@
+{% load static %}
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="/">Navbar</a>
+    <a class="navbar-brand" href="/">Control access - Big John</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -18,14 +20,16 @@
           <a href="/" class="nav-link">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/logout">Logout</a>
-        </li>
-        <li class="nav-item">
           <a href="/signin" class="nav-link">Login</a>
         </li>
         <li class="nav-item">
           <a href="/signup" class="nav-link">Register</a>
         </li>
+        </li class="nav-item">
+          <a href="{% url 'list_employee' %}" class="nav-link">Employees</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'list_department' %}" class="nav-link">Departments</a>
       </ul>
     </div>
   </div>
