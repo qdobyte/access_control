@@ -21,4 +21,5 @@ class VisitorIngress(models.Model):
 
     def __str__(self):
         """ String representation."""
-        return f"{self.visitor.name} - {self.ingress_time}"
+        return f"{self.visitor.first_name} {self.visitor.last_name} ({self.visitor.company}) - " \
+               f"{self.ingress_time.strftime('%Y-%m-%d %H:%M:%S')}"

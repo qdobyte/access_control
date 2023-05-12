@@ -1,15 +1,13 @@
-from django.contrib.auth.models import User
 from django.db import models
 
 
 class Employee(models.Model):
     """ Employee model."""
 
-    name = models.CharField('Name', max_length=255)
+    first_name = models.CharField('First name', max_length=255)
     last_name = models.CharField('Last Name', max_length=255)
     document = models.CharField('Document', max_length=255)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User')
-    cost_department = models.ForeignKey('users.CostDepartment', on_delete=models.CASCADE, verbose_name='Cost Department')
+    cost_department = models.ForeignKey('users.CostDepartment', on_delete=models.CASCADE, verbose_name='Cost department')
     created_at = models.DateTimeField('Create date', auto_now_add=True)
     updated_at = models.DateTimeField('Update date', auto_now=True)
 
@@ -23,4 +21,5 @@ class Employee(models.Model):
 
     def __str__(self):
         """ String representation."""
-        return self.user.name()
+        return f"{self.first_name} {self.last_name} ({self.cost_department.name})"
+
