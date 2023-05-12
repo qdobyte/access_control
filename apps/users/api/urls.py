@@ -5,6 +5,7 @@ from apps.users.api.views.employee import EmployeeViewSet
 from apps.users.api.views.visitor import VisitorViewSet
 from apps.users.api.views.cost_department import CostDepartmentViewSet
 from apps.users.api.views.employee_ingress import EmployeeIngressViewSet
+from apps.users.api.views.visitor_ingress import VisitorIngressViewSet
 
 urlpatterns = [
     # path('signin/', signin, name='signin'),
@@ -37,6 +38,14 @@ urlpatterns = [
          name='list_employee_ingress'),
     path('api/v1/employee_ingress/retrieve/<int:pk>', EmployeeIngressViewSet.as_view({'get': 'retrieve'}),
          name='retrieve_employee_ingress'),
+    path('api/v1/visitor_ingress/create', VisitorIngressViewSet.as_view({'post': 'create'}),
+         name='create_visitor_ingress'),
+    path('api/v1/visitor_ingress/update/<int:pk>', VisitorIngressViewSet.as_view({'put': 'update'}),
+         name='update_visitor_ingress'),
+    path('api/v1/visitor_ingress/list', VisitorIngressViewSet.as_view({'get': 'list'}),
+         name='list_visitor_ingress'),
+    path('api/v1/visitor_ingress/retrieve/<int:pk>', VisitorIngressViewSet.as_view({'get': 'retrieve'}),
+         name='retrieve_visitor_ingress'),
 
     path('docs/', include_docs_urls(title='API Docs')),
 ]

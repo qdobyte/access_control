@@ -2,19 +2,19 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
 
-from apps.users.api.serializers.employee_ingress import EmployeeIngressSerializer
-from apps.users.models.employee_ingress import EmployeeIngress
+from apps.users.api.serializers.visitor_ingress import VisitorIngressSerializer
+from apps.users.models.visitor_ingress import VisitorIngress
 
 
-class EmployeeIngressViewSet(viewsets.ModelViewSet):
-    """ EmployeeIngress view set."""
+class VisitorIngressViewSet(viewsets.ModelViewSet):
+    """ VisitorIngress view set."""
 
-    queryset = EmployeeIngress.objects.all()
-    serializer_class = EmployeeIngressSerializer
+    queryset = VisitorIngress.objects.all()
+    serializer_class = VisitorIngressSerializer
 
     def create(self, request, *args, **kwargs):
         """
-        Create a new EmployeeIngress instance.
+        Create a new VisitorIngress instance.
 
         Args:
             request (Request): The incoming request object.
@@ -27,12 +27,12 @@ class EmployeeIngressViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'EmployeeIngress created successfully'}, status=status.HTTP_201_CREATED)
+            return Response({'message': 'VisitorIngress created successfully'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def update(self, request, *args, **kwargs):
         """
-        Update an existing EmployeeIngress instance.
+        Update an existing VisitorIngress instance.
 
         Args:
             request (Request): The incoming request object.
@@ -51,12 +51,12 @@ class EmployeeIngressViewSet(viewsets.ModelViewSet):
                 # Update is_inside to False
                 request.data['is_inside'] = False
             self.perform_update(serializer)
-            return Response({'message': 'EmployeeIngress updated successfully'}, status=status.HTTP_200_OK)
+            return Response({'message': 'VisitorIngress updated successfully'}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, *args, **kwargs):
         """
-        Destroy an existing EmployeeIngress instance.
+        Destroy an existing VisitorIngress instance.
 
         Args:
             request (Request): The incoming request object.
@@ -64,7 +64,8 @@ class EmployeeIngressViewSet(viewsets.ModelViewSet):
             **kwargs: Arbitrary keyword arguments.
 
         Returns:
-            Response: The response object with a message indicating that deleting EmployeeIngress is not allowed.
+            Response: The response object with a success or error message.
         """
-        return Response({'message': 'Deleting EmployeeIngress is not allowed'},
-                        status=status.HTTP_405_METHOD_NOT_ALLOWED)
+        instance = self.get_object()
+        instance.delete()
+        return Response({'message': 'VisitorIngress deleted successfully'}, status=status.HTTP_200_OK)
