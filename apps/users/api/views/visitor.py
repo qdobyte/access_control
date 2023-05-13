@@ -1,6 +1,8 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import render
+
 
 from apps.users.api.serializers.visitor import VisitorSerializer
 from apps.users.models.visitor import Visitor
@@ -12,12 +14,21 @@ class VisitorViewSet(viewsets.ModelViewSet):
     queryset = Visitor.objects.all()
     serializer_class = VisitorSerializer
 
+    def list(self, request):
+        visitors = self.get_queryset()
+        return render(request, 'visitor/list.html', {'visitors': visitors})
+
+    def retrieve(self, request, pk=None):
+        visitor = self.get_object()
+        return render(request, 'visitor/detail.html', {'visitor': visitor})
+
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'Visitor created successfully'}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            visitors = self.get_queryset()
+            return render(request, 'visitor/list.html', {'visitors': visitors})
+        return render(request, 'visitor/create.html', {'serializer': serializer})
 
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
@@ -25,8 +36,9 @@ class VisitorViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
         if serializer.is_valid():
             self.perform_update(serializer)
-            return Response({'message': 'Visitor updated successfully'}, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            visitors = self.get_queryset()
+            return render(request, 'visitor/list.html', {'visitors': visitors})
+        return render(request, 'visitor/update.html', {'serializer': serializer})
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()

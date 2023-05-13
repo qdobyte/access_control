@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<form method="POST">
+    {% csrf_token %}
+    <label for="first_name">Nombre:</label>
+    <input type="text" name="first_name" id="first_name"><br>
+
+    <label for="last_name">Apellido:</label>
+    <input type="text" name="last_name" id="last_name"><br>
+
+    <label for="document">Documento:</label>
+    <input type="text" name="document" id="document"><br>
+
+    <label for="is_provider">¿Es proveedor?</label>
+    <input type="checkbox" name="is_provider" id="is_provider"><br>
+
+    <label for="company">Empresa:</label>
+    <input type="text" name="company" id="company"><br>
+
+    <input type="submit" value="Crear">
+</form>
+{% endblock %}
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% endblock %}

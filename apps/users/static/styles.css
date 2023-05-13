@@ -77,3 +77,30 @@
   color: #343a40;
   text-align: center;
 }
+
+.container {
+max-width: 800px;
+margin: 0 auto;
+}
+
+.card {
+border: none;
+border-radius: 20px;
+box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.card-body {
+padding: 30px;
+}
+
+.btn-primary {
+background-color: #6B5B95;
+border-color: #6B5B95;
+font-size: 16px;
+font-weight: 600;
+}
+
+.btn-primary:hover {
+background-color: #4C3C5E;
+border-color: #4C3C5E;
+}

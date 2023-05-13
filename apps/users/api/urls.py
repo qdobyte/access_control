@@ -8,9 +8,9 @@ from apps.users.api.views.employee_ingress import EmployeeIngressViewSet
 from apps.users.api.views.visitor_ingress import VisitorIngressViewSet
 
 urlpatterns = [
+    path('', home, name='home'),
     path('signin/', signin, name='signin'),
     path('signup/', signup, name='signup'),
-    path('', home, name='home'),
     path('api/v1/employee/create', EmployeeViewSet.as_view({'post': 'create'}), name='create_employee'),
     path('api/v1/employee/update/<int:pk>', EmployeeViewSet.as_view({'put': 'update'}), name='update_employee'),
     path('api/v1/employee/delete/<int:pk>', EmployeeViewSet.as_view({'delete': 'destroy'}), name='delete_employee'),
