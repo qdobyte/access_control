@@ -17,23 +17,15 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a href="/" class="nav-link">Home</a>
+          <a href="/" class="nav-link">Inicio</a>
         </li>
         <li class="nav-item">
-          <a href="/signin" class="nav-link">Login</a>
+          <a href="{% url 'list_employee' %}" class="nav-link">Empleados</a>
         </li>
         <li class="nav-item">
-          <a href="/signup" class="nav-link">Register</a>
+          <a href="{% url 'list_visitor' %}" class="nav-link">Visitantes</a>
         </li>
-        </li class="nav-item">
-          <a href="{% url 'list_employee' %}" class="nav-link">Employees</a>
-        </li>
-        <li class="nav-item">
-          <a href="{% url 'list_visitor' %}" class="nav-link">Visitor</a>
-        </li>
-        <li class="nav-item">
-          <a href="{% url 'create_visitor' %}" class="nav-link">Create visitor</a>
-        </li>
+
       </ul>
     </div>
   </div>

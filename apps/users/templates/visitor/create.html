@@ -1,29 +1,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% load static %}
-
-<form method="POST">
-    {% csrf_token %}
-    <label for="first_name">Nombre:</label>
-    <input type="text" name="first_name" id="first_name"><br>
-
-    <label for="last_name">Apellido:</label>
-    <input type="text" name="last_name" id="last_name"><br>
-
-    <label for="document">Documento:</label>
-    <input type="text" name="document" id="document"><br>
-
-    <label for="is_provider">¿Es proveedor?</label>
-    <input type="checkbox" name="is_provider" id="is_provider"><br>
-
-    <label for="company">Empresa:</label>
-    <input type="text" name="company" id="company"><br>
-
-    <input type="submit" value="Crear">
-</form>
+  {% load static %}
+  <div class="container">
+    <h1 class="c-title text-center">Crear empleado</h1>
+    <form method="POST" class="c-form">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="first_name" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Nombre" required>
+      </div>
+      <div class="mb-3">
+        <label for="last_name" class="form-label">Apellido</label>
+        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Apellido" required>
+      </div>
+      <div class="mb-3">
+        <label for="document" class="form-label">Documento</label>
+        <input type="text" class="form-control" id="document" name="document" placeholder="Documento" required>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="is_provider" name="is_provider">
+        <label class="form-check-label" for="is_provider">¿Es proveedor?</label>
+      </div>
+      <div class="mb-3">
+        <label for="company" class="form-label">Empresa</label>
+        <input type="text" class="form-control" id="company" name="company" placeholder="Empresa">
+      </div>
+      <button type="submit" class="btn btn-primary">Crear empleado</button>
+    </form>
+  </div>
 {% endblock %}
-{% block css %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 {% endblock %}

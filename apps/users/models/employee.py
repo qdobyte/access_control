@@ -22,4 +22,3 @@ class Employee(models.Model):
     def __str__(self):
         """ String representation."""
         return f"{self.first_name} {self.last_name} ({self.cost_department.name})"
-

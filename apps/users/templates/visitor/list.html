@@ -4,6 +4,9 @@
 {% load static %}
 <div class="container">
     <h1 class="c-title text-center">Lista de Visitantes - BIG JOHN</h1>
+    <br>
+    <a href="{% url 'create_visitor' %}" class="btn btn-success">Crear visitante</a>
+    <br><br>
     <div class="table-responsive">
         <table class="c-list table table-striped table-hover">
             <thead class="thead-dark">
@@ -11,6 +14,7 @@
                 <th scope="col" class="c-list__header text-center align-middle font-weight-bold">Nombre</th>
                 <th scope="col" class="c-list__header text-center align-middle font-weight-bold">Apellido</th>
                 <th scope="col" class="c-list__header text-center align-middle font-weight-bold">Documento</th>
+                <th scope="col" class="c-list__header text-center align-middle font-weight-bold">Empresa</th>
             </tr>
             </thead>
             <tbody>

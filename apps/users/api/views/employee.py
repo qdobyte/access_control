@@ -1,8 +1,6 @@
-from rest_framework import viewsets
-from rest_framework.response import Response
-from rest_framework import status
 from django.shortcuts import render
-
+from requests import Response
+from rest_framework import viewsets, status
 
 from apps.users.api.serializers.employee import EmployeeSerializer
 from apps.users.models.employee import Employee
@@ -18,29 +16,10 @@ class EmployeeViewSet(viewsets.ModelViewSet):
         employees = self.get_queryset()
         return render(request, 'employee/list.html', {'employees': employees})
 
-    def retrieve(self, request, pk=None):
-        employees = self.get_object()
-        return render(request, 'employee/detail.html', {'employees': employees})
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
+    def create(self, request):
+        serializer = EmployeeSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'Employee created successfully'}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        if serializer.is_valid():
-            self.perform_update(serializer)
-            return Response({'message': 'Employee updated successfully'}, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        if instance:
-            self.perform_destroy(instance)
-            return Response({'message': 'Employee deleted successfully'}, status=status.HTTP_200_OK)
-        return Response({'message': 'Employee not found'}, status=status.HTTP_404_NOT_FOUND)
+            return render(request, 'employee/list.html', {'employees': serializer.data})
+        else:
+            return render(request, 'employee/create.html', {'serializer': serializer.data})

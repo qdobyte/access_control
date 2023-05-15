@@ -12,24 +12,6 @@ class VisitorIngressViewSet(viewsets.ModelViewSet):
     queryset = VisitorIngress.objects.all()
     serializer_class = VisitorIngressSerializer
 
-    def create(self, request, *args, **kwargs):
-        """
-        Create a new VisitorIngress instance.
-
-        Args:
-            request (Request): The incoming request object.
-            *args: Variable length argument list.
-            **kwargs: Arbitrary keyword arguments.
-
-        Returns:
-            Response: The response object with a success or error message.
-        """
-        serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response({'message': 'VisitorIngress created successfully'}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
     def update(self, request, *args, **kwargs):
         """
         Update an existing VisitorIngress instance.
@@ -54,18 +36,3 @@ class VisitorIngressViewSet(viewsets.ModelViewSet):
             return Response({'message': 'VisitorIngress updated successfully'}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def destroy(self, request, *args, **kwargs):
-        """
-        Destroy an existing VisitorIngress instance.
-
-        Args:
-            request (Request): The incoming request object.
-            *args: Variable length argument list.
-            **kwargs: Arbitrary keyword arguments.
-
-        Returns:
-            Response: The response object with a success or error message.
-        """
-        instance = self.get_object()
-        instance.delete()
-        return Response({'message': 'VisitorIngress deleted successfully'}, status=status.HTTP_200_OK)
