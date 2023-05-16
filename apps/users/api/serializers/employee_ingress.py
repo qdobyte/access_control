@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from apps.users.models.employee_ingress import EmployeeIngress
 
 
@@ -13,6 +14,3 @@ class EmployeeIngressSerializer(serializers.ModelSerializer):
         """ Metaclass for EmployeeIngressSerializer class """
         model = EmployeeIngress
         fields = '__all__'
-
-
-

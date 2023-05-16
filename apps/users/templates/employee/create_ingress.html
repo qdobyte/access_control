@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container">
+	<h1>Registrar ingreso de empleado</h1>
+	<form method="post" action="{% url 'create_ingress' %}">
+		{% csrf_token %}
+		<label for="employee">Empleado:</label>
+		<select name="employee">
+			{% for employee in employees %}
+				<option value="{{ employee.id }}">{{ employee.first_name }} {{ employee.last_name }}</option>
+			{% endfor %}
+		</select><br><br>
+		<input type="submit" value="Registrar ingreso">
+	</form>
+</div>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% endblock %}
+```
